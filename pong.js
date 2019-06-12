@@ -1,14 +1,14 @@
-const canvas = document.querySelector('#particle-effect-container');
-const c = canvas.getContext('2d');
+const pongCanvas = document.querySelector('#pong-container');
+const pongC = pongCanvas.getContext('2d');
 
-let maxWidth = 800;
-let maxHeight = 400;
+let pongMaxWidth = 800;
+let pongMaxHeight = 400;
 
-canvas.height = maxHeight;
-canvas.width = maxWidth;
+pongCanvas.height = pongMaxHeight;
+pongCanvas.width = pongMaxWidth;
 
-c.fillStyle = "whitesmoke";
-c.strokeStyle = "whitesmoke";
+pongC.fillStyle = "whitesmoke";
+pongC.strokeStyle = "whitesmoke";
 
 class Game {
     constructor() {
@@ -21,7 +21,7 @@ class Player {
         this.height = 50;
         this.width = 10;
         this.velocity = 2;
-        this.xCord = playerNumber === 1 ? 10 : 780;
+        this.xCord = playerNumber === 1 ? 2 : 788;
         this.yCord = 0;
     }
 
@@ -33,7 +33,7 @@ class Player {
     }
 
     moveDown() {
-        if (this.yCord > maxHeight - 50) {
+        if (this.yCord > pongMaxHeight - 50) {
             return
         }
 
@@ -41,10 +41,10 @@ class Player {
     }
 
     draw() {
-        c.beginPath();
-        c.rect(this.xCord, this.yCord, this.width, this.height);
-        c.fill();   
-        c.stroke();
+        pongC.beginPath();
+        pongC.rect(this.xCord, this.yCord, this.width, this.height);
+        pongC.fill();   
+        pongC.stroke();
     }
 }
 const game = new Game();
@@ -54,7 +54,7 @@ const playerTwo = new Player(2);
 const allowedMoves = [87, 83, 38, 40];
 
 function runGame() {
-    c.clearRect(0, 0, maxWidth, maxHeight);
+    pongC.clearRect(0, 0, pongMaxWidth, pongMaxHeight);
     playerOne.draw();
     playerTwo.draw();
     game.movement.map(move => playersMove(move))
